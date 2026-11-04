@@ -1,0 +1,340 @@
+/* ===== Hero SuperCar (à charger APRÈS accueil.css) ===== */
+:root {
+    --hero-orange: #E8681A;
+    --hero-ink: #222222;
+    --hero-serif: 'Newsreader', 'Playfair Display', Georgia, 'Times New Roman', serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+#accueil,
+#apropos,
+#processus,
+#footer {
+    scroll-margin-top: 80px;
+}
+
+.hero2 {
+    position: relative;
+    min-height: calc(100vh - 80px);
+    padding: clamp(1.25rem, 4vh, 3rem) 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(to bottom, #e9eef3, #dde3ea);
+    overflow: hidden;
+    color: var(--hero-ink);
+}
+
+/* Scène : image (voiture entière) + bouton placé sous la voiture */
+.hero2-stage {
+    position: relative;
+    z-index: 1;
+    order: 2;
+    margin-top: auto;
+    width: min(100%, 1500px, max(720px, calc((100vh - 340px) * 2.6)));
+}
+
+.hero2-img {
+    width: 100%;
+    aspect-ratio: 2.6 / 1;
+    background-size: cover;
+    background-position: center 88%;
+    background-repeat: no-repeat;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 8%),
+        linear-gradient(to right, transparent 0, #000 16%, #000 84%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to bottom, transparent 0, #000 8%),
+        linear-gradient(to right, transparent 0, #000 16%, #000 84%, transparent 100%);
+    mask-composite: intersect;
+}
+
+/* Titre */
+.hero2-title {
+    position: relative;
+    z-index: 2;
+    order: 1;
+    font-family: var(--hero-serif);
+    font-weight: 600;
+    font-size: clamp(2rem, 4.6vw, 4.4rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    text-align: center;
+    max-width: 18em;
+    text-wrap: balance;
+}
+
+.hero2-title span {
+    display: block;
+    color: var(--hero-orange);
+}
+
+/* Infos gauche / droite */
+.hero2-specs {
+    position: absolute;
+    z-index: 2;
+    top: 55%;
+    left: clamp(1.5rem, 3.5vw, 3.5rem);
+    right: clamp(1.5rem, 3.5vw, 3.5rem);
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.hero2-col {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.hero2-col--right {
+    text-align: right;
+    align-items: flex-end;
+}
+
+.hero2-spec h3 {
+    font-family: var(--hero-serif);
+    font-weight: 500;
+    font-size: clamp(1.1rem, 1.7vw, 1.6rem);
+    padding-bottom: .45rem;
+    margin-bottom: .55rem;
+    position: relative;
+    display: inline-block;
+}
+
+.hero2-spec h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--hero-orange);
+}
+
+.hero2-spec p {
+    font-size: clamp(.8rem, 1vw, .95rem);
+    color: #444;
+    line-height: 1.35;
+    margin: 0;
+}
+
+/* Bas de la scène : bouton + flèche, sous la voiture */
+.hero2-bottom {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    bottom: .4rem;
+    transform: translateX(-50%);
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.hero2-cta {
+    background: var(--hero-orange);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: .85rem 2.2rem;
+    border-radius: 999px;
+    box-shadow: 0 8px 24px rgba(232, 104, 26, .35);
+    transition: transform .25s ease, background .25s ease;
+}
+
+.hero2-cta:hover,
+.hero2-cta:focus-visible {
+    background: #cf5a12;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.hero2-cta:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+}
+
+.hero2-scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .35rem;
+    color: #fff;
+    text-decoration: none;
+    font-size: .8rem;
+    letter-spacing: .12em;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, .5);
+}
+
+.hero2-scroll::before {
+    content: '';
+    width: 1px;
+    height: 22px;
+    background: rgba(255, 255, 255, .85);
+}
+
+.hero2-scroll i {
+    animation: hero2-bounce 1.8s ease-in-out infinite;
+}
+
+@keyframes hero2-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(5px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero2-scroll i {
+        animation: none;
+    }
+
+    .hero2-cta {
+        transition: none;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Variante photo sombre */
+.hero2--dark {
+    background: #141414;
+    color: #fff;
+}
+
+.hero2--dark .hero2-title {
+    color: #fff;
+}
+
+.hero2--dark .hero2-title span {
+    color: #FF8A3D;
+}
+
+.hero2--dark .hero2-spec p {
+    color: rgba(255, 255, 255, .85);
+}
+
+/* Tablette / mobile : titre, image, bouton, puis infos en grille 2x2 */
+@media (max-width: 991px) {
+    .hero2 {
+        min-height: 100svh;
+        padding-bottom: 1.5rem;
+    }
+
+    .hero2-stage {
+        width: calc(100% + 3rem);
+        margin: 1rem -1.5rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero2-img {
+        aspect-ratio: 16 / 9;
+        background-position: center bottom;
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 20%);
+        mask-image: linear-gradient(to bottom, transparent 0, #000 20%);
+    }
+
+    .hero2-bottom {
+        position: static;
+        transform: none;
+        margin-top: 1rem;
+    }
+
+    .hero2-scroll {
+        color: var(--hero-ink);
+        text-shadow: none;
+    }
+
+    .hero2-scroll::before {
+        background: var(--hero-ink);
+    }
+
+    .hero2--dark .hero2-scroll {
+        color: #fff;
+    }
+
+    .hero2-specs {
+        order: 3;
+        position: static;
+        width: 100%;
+        max-width: 520px;
+        margin-top: 1.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem 1rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, .7);
+        border-radius: 14px;
+        pointer-events: auto;
+    }
+
+    .hero2--dark .hero2-specs {
+        background: rgba(255, 255, 255, .08);
+    }
+
+    .hero2-col {
+        display: contents;
+    }
+
+    .hero2-col--right {
+        text-align: left;
+        align-items: stretch;
+    }
+}
+
+/* ===== Flèches entre sections (même style que celle du hero) ===== */
+.section-scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .35rem;
+    width: max-content;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+    color: #333;
+    text-decoration: none;
+    font-size: .8rem;
+    letter-spacing: .12em;
+    transition: color .25s ease;
+}
+
+.section-scroll::before {
+    content: '';
+    width: 1px;
+    height: 30px;
+    background: currentColor;
+    opacity: .6;
+}
+
+.section-scroll i {
+    animation: hero2-bounce 1.8s ease-in-out infinite;
+}
+
+.section-scroll:hover,
+.section-scroll:focus-visible {
+    color: #E67E22;
+}
+
+.section-scroll:focus-visible {
+    outline: 3px solid rgba(230, 126, 34, .4);
+    outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .section-scroll i {
+        animation: none;
+    }
+}
